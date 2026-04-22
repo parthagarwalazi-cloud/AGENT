@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unlimitr ADR v5.1 — Atmospheric Diamond Refinery</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
+:root{
+  --bg:#050709;--panel:#080d12;--panel2:#0b1118;--border:#111c26;--border2:#162333;
+  --c:#00d4ff;--c2:#ff5722;--c3:#00e676;--warn:#ffab00;--danger:#ff1744;--gold:#ffc107;
+  --purple:#e040fb;--teal:#1de9b6;--pink:#f50057;--lime:#c6ff00;
+  --t:#b8d4e8;--t2:#3d5a6a;--t3:#1e3040;
+  --mono:'Space Mono',monospace;--head:'Bebas Neue',sans-serif;--body:'DM Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--t);font-family:var(--body);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,212,255,.011) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.011) 1px,transparent 1px);
+  background-size:56px 56px;pointer-events:none;z-index:0;}
+.wrap{position:relative;z-index:1;max-width:1560px;margin:0 auto;padding:16px 20px;}
+
+header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border2);}
+.hL h1{font-family:var(--head);font-size:3.2rem;letter-spacing:.08em;color:var(--c);line-height:1;}
+.hL .tagline{font-family:var(--mono);font-size:.5rem;color:var(--t2);letter-spacing:.14em;margin-top:4px;}
+
+.tabs{display:flex;gap:2px;margin-bottom:12px;background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:3px;flex-wrap:wrap;}
+.tab{flex:1;min-width:66px;padding:6px 3px;background:none;border:none;border-radius:3px;font-family:var(--head);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--t2);cursor:pointer;transition:all .16s;white-space:nowrap;text-align:center;}
+.tab.on{background:rgba(0,212,255,.07);color:var(--c);border:1px solid rgba(0,212,255,.18);}
+.tp{display:none;}.tp.on{display:block;}
+
+.p{background:var(--panel);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:11px;}
+.ph{display:flex;align-items:center;justify-content:space-between;padding:7px 13px;border-bottom:1px solid var(--border);background:rgba(0,212,255,.01);}
+.pt{font-family:var(--head);font-size:.72rem;letter-spacing:.2em;color:var(--c);}
+
+/* Knowledge Base Styles */
+.kb-container { padding: 20px; color: var(--t); line-height: 1.6; font-family: var(--body); }
+.kb-section { margin-bottom: 25px; border-left: 2px solid var(--border2); padding-left: 15px; }
+.kb-h2 { font-family: var(--head); font-size: 1.4rem; color: var(--gold); margin-bottom: 10px; letter-spacing: 0.1em; }
+.kb-item { margin-bottom: 8px; font-family: var(--mono); font-size: 0.55rem; color: var(--t); }
+.kb-item b { color: var(--c); }
+.kb-box { background: var(--panel2); border: 1px solid var(--border2); padding: 10px; border-radius: 4px; margin: 10px 0; }
+
+.sl{padding:11px 13px;display:flex;flex-direction:column;gap:5px;}
+.sr{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:5px;border-bottom:1px solid rgba(17,28,38,.7);gap:8px;}
+.sk{font-family:var(--mono);font-size:.5rem;color:var(--t2);letter-spacing:.06em;text-transform:uppercase;flex-shrink:0;min-width:110px;}
+.sv{font-family:var(--mono);font-size:.56rem;color:var(--t);text-align:right;}
+.pill{font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;padding:3px 8px;border-radius:2px;text-transform:uppercase; margin-left: 4px;}
+.pill.r{background:rgba(255,23,68,.07);border:1px solid var(--danger);color:var(--danger);}
+.pill.b{background:rgba(0,212,255,.07);border:1px solid var(--c);color:var(--c);}
+.pill.go{background:rgba(255,193,7,.07);border:1px solid var(--gold);color:var(--gold);}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="hL">
+    <h1>UNLIMITR ADR v5.1</h1>
+    <div class="tagline">◈ INTEGRATED KNOWLEDGE BASE · 422 DIFFICULTIES · 76% READY</div>
+  </div>
+  <div class="hR" style="display: flex; align-items: flex-end;">
+    <span class="pill go">~$47K LAUNCH</span>
+    <span class="pill r">KNOWLEDGE INTEGRATED</span>
+    <span class="pill b">V5.1 STABLE</span>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab on" onclick="showTab('overview',this)">Overview</button>
+  <button class="tab" onclick="showTab('kb',this)">🧠 Knowledge Base</button>
+  <button class="tab" onclick="showTab('difficulties',this)">Difficulties</button>
+  <button class="tab" onclick="showTab('financial',this)">Financial</button>
+</div>
+
+<div class="tp on" id="tab-overview">
+  <div class="p">
+    <div class="ph"><span class="pt">Project Status Summary</span></div>
+    <div class="sl">
+        <div class="sr"><span class="sk">Status</span><span class="sv" style="color:var(--c3)">76% Readiness — Targeting 85% for build-start</span></div>
+        <div class="sr"><span class="sk">Location</span><span class="sv">Round Rock, TX</span></div>
+        <div class="sr"><span class="sk">Motto</span><span class="sv">"To our best knowledge we think (kinda)"</span></div>
+        <div class="sr"><span class="sk">Technology</span><span class="sv">Solar-Powered DAC-to-CVD Synthesis</span></div>
+    </div>
+  </div>
+  <div class="p">
+    <div class="ph"><span class="pt">Subsystem Readiness</span></div>
+    <div class="sl">
+        <div class="sr"><span class="sk">Solar A-Frame</span><span class="sv" style="color:var(--c3)">91%</span></div>
+        <div class="sr"><span class="sk">Sabatier Reactor</span><span class="sv" style="color:var(--c3)">88%</span></div>
+        <div class="sr"><span class="sk">MPCVD Growth</span><span class="sv" style="color:var(--c3)">81%</span></div>
+        <div class="sr"><span class="sk">Overall</span><span class="sv" style="color:var(--gold)">76%</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="tp" id="tab-kb">
+  <div class="p">
+    <div class="ph"><span class="pt">UNLIMITR ADR TECHNICAL MASTER FILE</span><span class="pb b">FOR AI CONTEXT INJECTION</span></div>
+    <div class="kb-container">
+      
+      <div class="kb-section">
+        <h2 class="kb-h2">1. PROJECT CORE & MOTTO</h2>
+        <div class="kb-item"><b>Process Flow:</b> Atmospheric CO₂ → MOF Capture → Sabatier Methanization → MPCVD Growth → Gem Diamond.</div>
+        <div class="kb-item"><b>Energy Logic:</b> Behind-the-meter, solar-integrated, closed-loop loop.</div>
+        <div class="kb-item"><b>Motto:</b> "To our best knowledge we think (kinda)" — Gaurav & Parth (2026).</div>
+      </div>
+
+      <div class="kb-section">
+        <h2 class="kb-h2">2. SUBSYSTEM SPECIFICATIONS</h2>
+        <div class="kb-box">
+          <div class="kb-item"><b>MOF Capture:</b> SIFSIX-3-Ni (framergy Inc). 30 PVC chambers w/ PTFE liners. 95 m³/day capacity.</div>
+          <div class="kb-item"><b>Sabatier:</b> Ru/Al₂O₃ catalyst (5% Ru). 316L SS vessel. Exothermic above 280°C. 4.1:1 H₂:CO₂.</div>
+          <div class="kb-item"><b>Electrolyzer:</b> Alkaline KOH. 10 L/min H₂. Pd-membrane (99.999%). 85% water recovery.</div>
+          <div class="kb-item"><b>MPCVD:</b> 3kW Microwave Plasma. Surplus sourced. Viewport check every 8 hours.</div>
+        </div>
+      </div>
+
+      <div class="kb-section">
+        <h2 class="kb-h2">3. THERMODYNAMIC & ENERGY BALANCE</h2>
+        <div class="kb-item"><b>Total Thermal Load:</b> 3,500W continuous (includes Sabatier, MPCVD, Chiller, and Fans).</div>
+        <div class="kb-item"><b>Solar Generation:</b> 20× 550W Bifacial panels. Annual average 81 kWh/day.</div>
+        <div class="kb-item"><b>Storage Buffer:</b> 19.2 kWh LiFePO4 rack (North interior wall placement).</div>
+        <div class="kb-item"><b>Thermal Fix (#422):</b> Chiller HX mounted exterior to remove 1,500W from indoor load.</div>
+      </div>
+
+      <div class="kb-section">
+        <h2 class="kb-h2">4. RECENT CRITICAL SOLUTIONS (v5 UPDATES)</h2>
+        <div class="kb-item"><b>Difficulty #420:</b> KOH Concentration Drift → <b>Fix:</b> Atlas EZO-EC conductivity sensor (20-30% range).</div>
+        <div class="kb-item"><b>Difficulty #421:</b> RO Membrane Fouling → <b>Fix:</b> Inline TDS meter for permeate quality (Round Rock H₂O).</div>
+        <div class="kb-item"><b>Difficulty #315:</b> Catalyst Poisoning → <b>Fix:</b> Dual in-series TEPA traps (replace every 45 days).</div>
+        <div class="kb-item"><b>Difficulty #318:</b> H₂ Ignition Risk → <b>Fix:</b> Mandatory anti-static wrist straps for gas line work.</div>
+      </div>
+
+      <div class="kb-section">
+        <h2 class="kb-h2">5. FINANCIAL & UNIT ECONOMICS</h2>
+        <div class="kb-item"><b>Launch Total (Likely):</b> $47,000.</div>
+        <div class="kb-item"><b>Cost per Carat:</b> $1,977/ct (ADR) vs $4,520/ct (Conventional).</div>
+        <div class="kb-item"><b>Net Monthly Profit:</b> ~$2,375 (assuming $3,000/ct sale price + surplus gas revenue).</div>
+      </div>
+
+      <div class="kb-section">
+        <h2 class="kb-h2">6. PROVENANCE & BLOCKCHAIN</h2>
+        <div class="kb-item"><b>Logging:</b> InfluxDB 90-day retention of all 50+ sensor logs.</div>
+        <div class="kb-item"><b>Verification:</b> Daily hash published to Bitcoin blockchain via OpenTimestamps.</div>
+        <div class="kb-item"><b>Certification:</b> QR-linked IGI certification per stone.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="tp" id="tab-difficulties">
+    <div class="p"><div class="ph"><span class="pt">Database Status</span></div><div class="sl">
+        <div class="sr"><span class="sk">Total Diffs</span><span class="sv">422</span></div>
+        <div class="sr"><span class="sk">Solved</span><span class="sv" style="color:var(--c3)">100%</span></div>
+    </div></div>
+</div>
+
+<div class="tp" id="tab-financial">
+    <div class="p"><div class="ph"><span class="pt">Economic Estimates</span></div><div class="sl">
+        <div class="sr"><span class="sk">Launch Range</span><span class="sv">$43K - $58K</span></div>
+        <div class="sr"><span class="sk">ROI Timeline</span><span class="sv">36-42 Months</span></div>
+    </div></div>
+</div>
+
+<script>
+function showTab(name,btn){
+  document.querySelectorAll('.tp').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  const t=document.getElementById('tab-'+name);if(t)t.classList.add('on');
+  if(btn)btn.classList.add('on');
+}
+</script>
+</body>
+</html>
